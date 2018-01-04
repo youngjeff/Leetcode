@@ -26,16 +26,35 @@ class Solution {
         for(int i=2;i<=s.length();i++)
         {
             int sum = 0;
-            if(Integer.valueOf(s.substring(i-1,i))>0 )
+            if(Integer.valueOf(s.substring(i-1,i))>0)
             {
-                sum += result[i-1];
+                sum += result[i-1]; sum = sum %(int)(Math.pow(10,9)+7);
+
+            }
+            else{
+                if(s.substring(i-1,i).equals("*"))
+                {
+                    sum += 9;sum = sum %(int)(Math.pow(10,9)+7);
+                }
             }
             if(Integer.valueOf(s.substring(i-2,i-1))>0)
             {
+                if(s.substring(i-1,i).equals("*"))
+                {
+                    if(Integer.valueOf(s.substring(i-2,i)) == 1)
+                    {
+                        sum += 9;sum = sum %(int)(Math.pow(10,9)+7);
+                    }
+                    else if(Integer.valueOf(s.substring(i-2,i)) == 2)
+                    {
+                        sum += 6;sum = sum %(int)(Math.pow(10,9)+7);
+                    }
+                }
                 if(Integer.valueOf(s.substring(i-2,i))<=26)
                 {
-                    sum += result[i-2];
+                    sum += result[i-2];sum = sum %(int)(Math.pow(10,9)+7);
                 }
+
             }
             result[i] = sum;
         }
